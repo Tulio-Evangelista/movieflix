@@ -5,6 +5,7 @@ import com.movieflix.repository.CategoryRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CategoryService {
@@ -32,11 +33,12 @@ public class CategoryService {
 
 
     public List<Category> listarPorId(Long id) {
-        return categoryRepository.findById(id)
-                .map(List::of)
-                .orElse(List.of());
-    }
+       Optional<Category> categoryPresente = categoryRepository.findById(id);
+        if (categoryPresente.isPresent()) {
+            return categoryPresente.stream().toList();
 
+        }return null;
+    }
 
     public List<Category> listarPorNome(String name) {
         return categoryRepository.findAll().stream()
