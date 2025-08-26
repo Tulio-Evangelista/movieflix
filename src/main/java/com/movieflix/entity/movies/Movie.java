@@ -26,7 +26,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "movies")
+@Table(name = "movie")
 public class Movie {
 
 
@@ -34,7 +34,7 @@ public class Movie {
     @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 100, name = "titulo")
+    @Column(nullable = false, length = 100)
     private String name;
 
     private String description;
@@ -53,13 +53,13 @@ public class Movie {
     private LocalDateTime updatedAt;
 
     @ManyToMany
-    @JoinTable(name = "movie_categories",
+    @JoinTable(name = "movie_category",
     joinColumns = @JoinColumn(name = "movie_id"),
     inverseJoinColumns = @JoinColumn(name = "category_id"))
     private List<Category> categories;
 
     @ManyToMany
-    @JoinTable(name = "movie_streamings",
+    @JoinTable(name = "movie_streaming",
             joinColumns = @JoinColumn(name = "movie_id"),
             inverseJoinColumns = @JoinColumn(name = "streaming_id"))
     private List<Streaming> streamings;
