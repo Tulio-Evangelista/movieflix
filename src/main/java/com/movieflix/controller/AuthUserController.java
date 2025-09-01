@@ -37,7 +37,7 @@ public class AuthUserController {
 
         }
 
-
+        @PostMapping("/login")
         public  ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest){
             UsernamePasswordAuthenticationToken userAndPass =
                     new UsernamePasswordAuthenticationToken(loginRequest.email(), loginRequest.password());
